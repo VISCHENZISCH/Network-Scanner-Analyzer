@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <ImportNetSdkWorkloads>false</ImportNetSdkWorkloads>
+  </PropertyGroup>
+</Project>
