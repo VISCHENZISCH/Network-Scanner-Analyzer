@@ -8,9 +8,10 @@ namespace NetScanAnalyzer.Core
         private readonly LiteDatabase _db;
         private readonly ILiteCollection<ScanSession> _sessions;
 
-        public ScanHistory(string dbPath = "scans.db")
+        public ScanHistory(string? dbPath = null)
         {
-            _db = new LiteDatabase(dbPath);
+            dbPath ??= Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scans.db");
+            _db = new LiteDatabase($"Filename={dbPath};Connection=shared");
             _sessions = _db.GetCollection<ScanSession>("sessions");
             _sessions.EnsureIndex(x => x.Timestamp);
         }

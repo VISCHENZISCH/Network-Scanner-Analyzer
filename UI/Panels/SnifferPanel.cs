@@ -133,7 +133,9 @@ namespace NetScanAnalyzer.UI.Panels
             _btnPcap.Click   += BtnPcap_Click;
             _btnStop.Enabled = false;
 
-            SwitchTab(0);
+            // Defer initial tab switch until the control handle exists,
+            // otherwise SplitContainer triggers a GDI+ error during layout.
+            HandleCreated += (_, _) => SwitchTab(0);
 
             // Load devices
             try {
